@@ -6,7 +6,8 @@ const units = ['libra', 'kilo', 'litro', 'unidad', 'pieza'];
 const AgregarProducto = () => {
   const [item, setItem] = useState({
     name: '',
-    price: '',
+    purchasePrice: '', // Precio de compra
+    salePrice: '', // Precio de venta
     unit: '',
     details: '',
     category: ''
@@ -31,8 +32,8 @@ const AgregarProducto = () => {
   const handleCategoryUpdate = async () => {
     if (newCategory && !categories.includes(newCategory)) {
       try {
-        await axios.post('http://localhost:5000/api/categories', { category: newCategory });
-        setCategories([...categories, newCategory]);
+        const response = await axios.post('http://localhost:5000/api/categories', { category: newCategory });
+        setCategories((prevCategories) => [...prevCategories, response.data.category]);
         setNewCategory('');
       } catch (error) {
         console.error('Error adding category:', error);
@@ -41,9 +42,10 @@ const AgregarProducto = () => {
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setItem({
       ...item,
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 
@@ -52,6 +54,14 @@ const AgregarProducto = () => {
     try {
       await axios.post('http://localhost:5000/api/products', item);
       alert('Producto agregado con éxito.');
+      setItem({
+        name: '',
+        purchasePrice: '',
+        salePrice: '',
+        unit: '',
+        details: '',
+        category: ''
+      });
     } catch (error) {
       console.error('Error adding product:', error);
       alert('Error al agregar el producto.');
@@ -70,18 +80,33 @@ const AgregarProducto = () => {
             value={item.name}
             onChange={handleChange}
             placeholder="Nombre del producto"
+            required
           />
         </div>
         <div>
-          <label>Precio:</label>
+          <label>Precio de Compra:</label>
           <input
             type="number"
-            name="price"
-            value={item.price}
+            name="purchasePrice"
+            value={item.purchasePrice}
             onChange={handleChange}
-            placeholder="Precio"
+            placeholder="Precio de compra"
             min="0"
             step="0.01"
+            required
+          />
+        </div>
+        <div>
+          <label>Precio de Venta:</label>
+          <input
+            type="number"
+            name="salePrice"
+            value={item.salePrice}
+            onChange={handleChange}
+            placeholder="Precio de venta"
+            min="0"
+            step="0.01"
+            required
           />
         </div>
         <div>
@@ -90,6 +115,7 @@ const AgregarProducto = () => {
             name="unit"
             value={item.unit}
             onChange={handleChange}
+            required
           >
             <option value="">Seleccionar medida</option>
             {units.map((unit) => (
@@ -112,6 +138,7 @@ const AgregarProducto = () => {
             name="category"
             value={item.category}
             onChange={handleChange}
+            required
           >
             <option value="">Seleccionar categoría</option>
             {categories.map((category) => (
@@ -138,3 +165,4 @@ const AgregarProducto = () => {
 };
 
 export default AgregarProducto;
+
