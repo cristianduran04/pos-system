@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Inventory = () => {
-  // Ejemplo de datos de productos, en un caso real, esto vendría de una API o base de datos
+  
   const products = [
    
   ];
@@ -16,7 +16,8 @@ const Inventory = () => {
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Precio</th>
+              <th>Precio Compra</th>
+              <th>Precio Venta</th>
               <th>Medida</th>
               <th>Detalles</th>
               <th>Categoría</th>
