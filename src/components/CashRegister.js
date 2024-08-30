@@ -33,19 +33,19 @@ const CashRegister = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Cash Register</Typography>
+      <Typography variant="h4" gutterBottom>Registro De Caja</Typography>
       <TextField
-        label="Opening Amount"
+        label="Monto Inicial"
         fullWidth
         margin="normal"
         value={openingAmount}
         onChange={(e) => setOpeningAmount(e.target.value)}
       />
       <Button variant="contained" color="primary" onClick={handleOpenRegister}>
-        Open Register
+        Abrir Caja
       </Button>
 
-      <Typography variant="h6" gutterBottom>Current Amount: ${currentAmount}</Typography>
+      <Typography variant="h6" gutterBottom>Cantidad Actual: ${currentAmount}</Typography>
       
       <TextField
         label="Withdraw Amount"

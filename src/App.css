@@ -98,8 +98,8 @@ body, html {
 }
 
 .sidebar {
-  width: 250px;
-  background-color: #2c3e50; /* Un color de fondo profesional y sobrio */
+  width: 150px;
+  background-color: #475563; /* Un color de fondo profesional y sobrio */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   display: flex;
