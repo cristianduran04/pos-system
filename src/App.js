@@ -11,6 +11,7 @@ import Suppliers from './components/Suppliers';
 import Billing from './components/Billing';
 import MoneyOut from './components/MoneyOut';
 import AgregarProducto from './components/AgregarProducto';
+import CategoryManager from './components/CategoryManager';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
           <Route path="statistics" element={<Statistics />} />
           <Route path="customers" element={<Customers />} />
           <Route path="sales" element={<Sales />} />
+          <Route path="categorymanager" element={<CategoryManager />} />
           <Route path="suppliers" element={<Suppliers />} />
           <Route path="billing" element={<Billing />} />
           <Route path="moneyout" element={<MoneyOut />} />
